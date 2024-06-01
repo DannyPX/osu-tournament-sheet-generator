@@ -1,0 +1,24 @@
+{
+  "timeZone": "Europe/Brussels",
+  "dependencies": {
+    "libraries": [
+      {
+        "userSymbol": "osuAPILibrary",
+        "version": "26",
+        "libraryId": "1nT8zViGGMRg5HaH6laQlfnlNNGnZ2nbp5oihdBjgr-Yii7shk_c1hDTC",
+        "developmentMode": false
+      },
+      {
+        "userSymbol": "ManiaMappoolDBPublicLibrary",
+        "version": "1",
+        "libraryId": "1TUBSFFJ6VlS5la14PHqmpxeCryFGrlFdZcu61Y6kXFF2aAWrQvMhC29v",
+        "developmentMode": false
+      }
+    ]
+  },
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
+  "executionApi": {
+    "access": "ANYONE"
+  }
+}

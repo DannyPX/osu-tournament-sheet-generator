@@ -1,0 +1,15 @@
+{
+  "timeZone": "Europe/Brussels",
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
+  "dependencies": {
+    "libraries": [
+      {
+        "userSymbol": "ManiaMappoolDB",
+        "libraryId": "1d2DZMjtRCEP1NyZy9SetkaocC34dZnJL_86tr-Tz1AIjgl2P6CQ9Zl44",
+        "version": "0",
+        "developmentMode": true
+      }
+    ]
+  }
+}
