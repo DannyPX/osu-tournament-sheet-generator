@@ -15,16 +15,16 @@ const ContentType_: { [key: string]: string; } = {
 
 // Public (Also found in docs)
 
-const Scope: { [key: string]: string; } = {
-  ChatRead: 'chat.read',
-  ChatWrite: 'chat.write',
-  ChatWriteManage: 'chat.write_manage',
-  Delegate: 'delegate',
-  ForumWrite: 'forum.write',
-  FriendsRead: 'friends.read',
-  Identify: 'identify',
-  Public: 'public'
-};
+// const Scope: { [key: string]: string; } = {
+//   ChatRead: 'chat.read',
+//   ChatWrite: 'chat.write',
+//   ChatWriteManage: 'chat.write_manage',
+//   Delegate: 'delegate',
+//   ForumWrite: 'forum.write',
+//   FriendsRead: 'friends.read',
+//   Identify: 'identify',
+//   Public: 'public'
+// };
 
 const BeatmapPackType: { [key: string]: string; } = {
   Standard: 'standard',

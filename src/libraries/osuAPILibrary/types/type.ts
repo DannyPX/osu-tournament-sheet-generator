@@ -10,11 +10,11 @@ interface HttpParameter_ {
   value?: string | number | boolean | any[];
 }
 
-interface StringConstructor {
-  Empty: string;
-}
+// interface StringConstructor {
+//   Empty: string;
+// }
 
-String.Empty = "";
+// String.Empty = "";
 
 interface ArrayConstructor {
   Empty: Array<any>
