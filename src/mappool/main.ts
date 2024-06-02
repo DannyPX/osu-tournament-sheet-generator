@@ -1,71 +1,95 @@
 import * as osuAPILibrary from "../libraries/osuAPILibrary/endpoint";
 
-const _ui = SpreadsheetApp.getUi();
+const ui_ = SpreadsheetApp.getUi();
 
 function onOpen() {
-
-  _ui.createMenu('🛠️ TSG Scripts')
+  ui_.createMenu('🛠️ TSG Scripts')
     .addItem('⌛ Initialize', 'init')
+    .addItem('🔧 Clear Settings', 'clearSettings')
     .addSeparator()
     .addSubMenu(
-      _ui.createMenu('🔗 Link TSG Sheets')
+      ui_.createMenu('🔗 Link TSG Sheets')
         .addItem('WIP', 'WIP')
     )
     .addSeparator()
     .addSubMenu(
-      _ui.createMenu('🔑 API')
+      ui_.createMenu('🔑 API')
         .addItem('➕ Add Client ID', 'addClientID')
         .addItem('➕ Add Client Secret', 'addClientSecret')
         .addItem('🔒 Authorize API', 'authorize')
+        .addSeparator()
         .addItem('➖ Remove Client Credentials', 'removeClientCredentials')
     )
     .addSubMenu(
-      _ui.createMenu('🔧 Generation')
+      ui_.createMenu('🔧 Generation')
         .addItem('🔧 Generate Mappool Sheets', 'generateSheets')
+        .addSeparator()
         .addItem('🚫 Remove Generated Sheets', 'removeSheets')
     )
     .addSeparator()
     .addSubMenu(
-      _ui.createMenu('📊 Fetch Data')
-        .addItem('🎩 Fetch Poolers Data', 'fetchPoolers')
-        .addItem('📝 Fetch Maps Data', 'fetchMaps')
+      ui_.createMenu('📊 Fetch Data')
+        .addSubMenu(
+          ui_.createMenu("📊 DropdownValues")
+            .addItem('🎩 Fetch Poolers Data', 'fetchPoolers')
+            .addItem('🔧 Fetch Map Types', 'fetchMapTypes')
+            .addSeparator()
+            .addItem('🚫 Remove Poolers Data', 'removePoolers')
+            .addItem('🚫 Remove Map Types', 'removeMapTypes')
+        )
+        .addSubMenu(
+          ui_.createMenu("📝 Rounds")
+            .addItem('📝 Fetch Maps Data', 'fetchMaps')
+        )
     )
     .addToUi();
 }
 
 const init = () => {
   resetProperties_();
-  _ui.alert('Initialized');
+  ui_.alert('Initialized');
+};
+
+const clearSettings = () => {
+  let result = ui_.alert("Are you sure you want to clear the settings?", ui_.ButtonSet.OK);
+
+  if (result === ui_.Button.OK) {
+    clearSettings_();
+  }
 };
 
 const addClientID = () => {
-  let result = _ui.prompt("Enter Client ID");
+  let result = ui_.prompt("Enter Client ID");
   let button = result.getSelectedButton();
 
-  button === _ui.Button.OK ? (setProperty_("clientID", result.getResponseText()), _ui.alert("Added Client ID")) : Logger.log("Cancelled");
+  button === ui_.Button.OK ? (setProperty_("clientID", result.getResponseText()), ui_.alert("Added Client ID")) : Logger.log("Cancelled");
 };
 
 const addClientSecret = () => {
-  let result = _ui.prompt("Enter Client Secret");
+  let result = ui_.prompt("Enter Client Secret");
   let button = result.getSelectedButton();
 
-  button === _ui.Button.OK ? (setProperty_("clientSecret", result.getResponseText()), _ui.alert("Added Client Secret")) : Logger.log("Cancelled");
+  button === ui_.Button.OK ? (setProperty_("clientSecret", result.getResponseText()), ui_.alert("Added Client Secret")) : Logger.log("Cancelled");
 };
 
 const authorize = () => {
-  if (isTokenExpired()) {
+  if (isTokenExpired_()) {
     let result = osuAPILibrary.ClientCredentialsGrant(parseInt(getProperty_("clientID")), getProperty_("clientSecret"), "client_credentials", Scope.Public);
     let tokenExpiry = Date.now() + (result.expires_in * 1000);
 
     setProperty_("token", result.access_token);
     setProperty_("tokenExpiry", tokenExpiry.toString());
-    _ui.alert("Authorized");
+    ui_.alert("Authorized");
   } else {
-    _ui.alert("Already Authorized");
+    ui_.alert("Already Authorized");
   }
 };
 
 const removeClientCredentials = () => {
-  resetProperties_();
-  _ui.alert('Removed Client Credentials');
+  let result = ui_.alert("Are you sure you want to remove all credentials?", ui_.ButtonSet.OK);
+
+  if (result === ui_.Button.OK) {
+    resetProperties_();
+    ui_.alert('Removed Client Credentials');
+  }
 };
