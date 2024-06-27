@@ -1,0 +1,15 @@
+{
+  "timeZone": "Europe/Brussels",
+  "dependencies": {
+    "libraries": [
+      {
+        "userSymbol": "osuAPILibrary",
+        "version": "26",
+        "libraryId": "1nT8zViGGMRg5HaH6laQlfnlNNGnZ2nbp5oihdBjgr-Yii7shk_c1hDTC",
+        "developmentMode": false
+      }
+    ]
+  },
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8"
+}
